@@ -1,3 +1,5 @@
 const rsdk = @import("RetroEngine");
 
-pub fn main() !void {}
+pub fn main() !void {
+    rsdk.init();
+}
