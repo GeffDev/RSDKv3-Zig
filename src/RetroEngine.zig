@@ -30,10 +30,7 @@ pub const RetroRenderTypes = enum {
     RENDER_HW,
 };
 
-pub const RetroBytecodeFormat = enum {
-    BYTECODE_MOBILE,
-    BYTECODE_PC
-};
+pub const RetroBytecodeFormat = enum { BYTECODE_MOBILE, BYTECODE_PC };
 
 pub const screenYSize = 240;
 pub const screenCenterY = screenYSize / 2;
