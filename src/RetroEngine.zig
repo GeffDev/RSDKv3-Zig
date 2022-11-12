@@ -36,6 +36,8 @@ pub const screenYSize = 240;
 pub const screenCenterY = screenYSize / 2;
 
 pub const RetroEngine = struct {
+    pub const rand = std.rand.DefaultPrng.init(std.time.timestamp());
+
     pub var usingDataFileConfig: bool = false;
     pub var usingDataFileStore: bool = false;
 
@@ -122,4 +124,8 @@ pub const RetroEngine = struct {
     pub var glContext: *c.SDL_GLContext = undefined;
 };
 
-pub fn init() !void {}
+pub const engine = RetroEngine;
+
+pub fn init() !void {
+    math.CalculateTrigAngles();
+}

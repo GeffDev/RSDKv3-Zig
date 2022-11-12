@@ -14,6 +14,10 @@ pub fn build(b: *std.build.Builder) void {
     const exe = b.addExecutable("RSDKv3-Zig", "src/main.zig");
     exe.setTarget(target);
     exe.setBuildMode(mode);
+    exe.linkLibC();
+
+    exe.linkSystemLibrary("SDL2");
+
     exe.install();
 
     const run_cmd = exe.run();

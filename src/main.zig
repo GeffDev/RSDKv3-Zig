@@ -1,5 +1,5 @@
-const rsdk = @import("RetroEngine");
+const rsdk = @import("RetroEngine.zig");
 
 pub fn main() !void {
-    rsdk.init();
+    try rsdk.init();
 }
