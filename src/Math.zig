@@ -61,7 +61,8 @@ pub fn CalculateTrigAngles() void {
             var angle: f32 = rsdk.std.math.atan2(f32, @intToFloat(f32, y), @intToFloat(f32, x));
             atan.* = @floatToInt(u8, angle * 40.743664);
             // 256 doesn't fit into u8?
-            atan += @intCast(u8, 256);
+            // Nevermind, ducky sent a message about it, its about incrementing the pointer
+            atan.*[@intCast(usize, atan.*[] + 256)];
         }
     }
 }
