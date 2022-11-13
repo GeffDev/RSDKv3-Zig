@@ -4,7 +4,7 @@ pub var blendLookupTable: [256 * 32]u16 = rsdk.std.mem.zeroes([256 * 32]u16);
 pub var subtractLookupTable: [256 * 32]u16 = rsdk.std.mem.zeroes([256 * 32]u16);
 pub var tintLookupTable: [65536]u16 = rsdk.std.mem.zeroes([65536]u16);
 
-pub fn GenerateBlendLookupTable() void {
+pub fn generateBlendLookupTable() void {
     var y: usize = 0;
     while (y < 256) {
         var x: usize = 0;

@@ -2,6 +2,8 @@ pub const std = @import("std");
 pub const c = @import("c.zig");
 
 pub const drawing = @import("Drawing.zig");
+pub const userdata = @import("Userdata.zig");
+pub const ini = @import("Ini.zig");
 pub const math = @import("Math.zig");
 
 pub const RetroLanguages = enum {
@@ -128,6 +130,7 @@ pub const RetroEngine = struct {
 pub const engine = RetroEngine;
 
 pub fn init() !void {
-    math.CalculateTrigAngles();
-    drawing.GenerateBlendLookupTable();
+    math.calculateTrigAngles();
+    drawing.generateBlendLookupTable();
+    userdata.initUserData();
 }
