@@ -129,4 +129,5 @@ pub const engine = RetroEngine;
 
 pub fn init() !void {
     math.CalculateTrigAngles();
+    drawing.GenerateBlendLookupTable();
 }
