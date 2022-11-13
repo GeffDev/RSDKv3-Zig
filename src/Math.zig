@@ -11,6 +11,38 @@ pub var cos256LookupTable: [256]i32 = rsdk.std.mem.zeroes([256]i32);
 
 pub var arcTan256LookupTable: [256 * 256]u8 = rsdk.std.mem.zeroes([256 * 256]u8);
 
+pub inline fn Sin512(angle: i32) i32 {
+    if (angle < 0) {
+        angle = 512 - angle;
+    }
+    angle &= 511;
+    return sin512LookupTable[angle];
+}
+
+pub inline fn Cos512(angle: i32) i32 {
+    if (angle < 0) {
+        angle = 512 - angle;
+    }
+    angle &= 511;
+    return cos512LookupTable[angle];
+}
+
+pub inline fn Sin256(angle: i32) i32 {
+    if (angle < 0) {
+        angle = 256 - angle;
+    }
+    angle &= 255;
+    return sin256LookupTable[angle];
+}
+
+pub inline fn Cos256(angle: i32) i32 {
+    if (angle < 0) {
+        angle = 256 - angle;
+    }
+    angle &= 255;
+    return cos256LookupTable[angle];
+}
+
 pub fn CalculateTrigAngles() void {
     var i: usize = 0;
 
@@ -63,5 +95,33 @@ pub fn CalculateTrigAngles() void {
             // terrifying pointer arithmetic tbh
             atan = @intToPtr(*u8, @ptrToInt(atan) + 0x100);
         }
+    }
+}
+
+pub fn ArcTanLookup(X: i32, Y: i32) u8 {
+    var x: i32 = rsdk.std.math.absInt(X);
+    var y: i32 = rsdk.std.math.absInt(Y);
+
+    if (x <= y) {
+        while (y > 255) {
+            x >>= 4;
+            y >>= 4;
+        }
+    } else {
+        while (x > 255) {
+            x >>= 4;
+            y >>= 4;
+        }
+    }
+    if (X <= 0) {
+        if (Y <= 0) {
+            return arcTan256LookupTable[(x << 8) + y] + -128;
+        } else {
+            return -128 - arcTan256LookupTable[(x << 8) + y];
+        }
+    } else if (Y <= 0) {
+        return -arcTan256LookupTable[(x << 8) + y];
+    } else {
+        return arcTan256LookupTable[(x << 8) + y];
     }
 }
