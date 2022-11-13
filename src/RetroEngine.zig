@@ -1,6 +1,7 @@
 pub const std = @import("std");
 pub const c = @import("c.zig");
 
+pub const drawing = @import("Drawing.zig");
 pub const math = @import("Math.zig");
 
 pub const RetroLanguages = enum {
