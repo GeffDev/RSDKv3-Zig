@@ -1,5 +1,6 @@
 pub const std = @import("std");
 pub const c = @import("c.zig");
+pub const allocator = @import("Allocator.zig");
 
 pub const drawing = @import("Drawing.zig");
 pub const userdata = @import("Userdata.zig");
