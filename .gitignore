@@ -1,4 +1,3 @@
-
 zig-cache/
 zig-out/
 /release/
@@ -6,3 +5,9 @@ zig-out/
 /build/
 /build-*/
 /docgen_tmp/
+
+*.dll
+*.so
+*.lib
+
+deps/c/include/SDL2

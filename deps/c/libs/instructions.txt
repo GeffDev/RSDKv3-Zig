@@ -1,0 +1,2 @@
+If on Windows, grab the libraries listed and extract them into the right folder.
+If on Linux, install through package manager.

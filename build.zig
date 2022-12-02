@@ -16,6 +16,9 @@ pub fn build(b: *std.build.Builder) void {
     exe.setBuildMode(mode);
     exe.linkLibC();
 
+    exe.addIncludePath("deps/c/include");
+
+    exe.addLibraryPath("deps/c/libs/SDL2");
     exe.linkSystemLibrary("SDL2");
 
     exe.install();

@@ -35,19 +35,22 @@ pub fn iniParser(fileName: []const u8) !void {
         var item: ItemConfig = rsdk.std.mem.zeroes(ItemConfig);
 
         if (lineTrimmed[0] == '#') {
-            break;
+            continue;
         }
         if (line.len == 0) {
             continue;
         }
 
         if (rsdk.std.mem.startsWith(u8, lineTrimmed, '[') and rsdk.std.mem.endsWith(u8, lineTrimmed, ']')) {
-            rsdk.std.mem.copy(u8, item.section, lineTrimmed[1..lineTrimmed.len - 1]);
-        
             section = rsdk.std.mem.zeroes([64]u8);
-            rsdk.std.mem.copy(u8, &section, lineTrimmed[1..lineTrimmed.len - 1]);
+            section = lineTrimmed[1..lineTrimmed.len - 1];
         } else if (rsdk.std.mem.indexOfScalar(u8, lineTrimmed, '=')) |index| {
-            _ = index;
+            item.key = lineTrimmed[0..index - 1];
+            item.value = lineTrimmed[index + 1..];
+            item.section = section;
+            
+            iniItems.append(item);
         }
+
     }
 }
